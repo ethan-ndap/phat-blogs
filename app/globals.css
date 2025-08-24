@@ -6,10 +6,24 @@
 }
 
 @theme inline {
+  /* Background + foreground */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+	--font-mono: var(--font-geist-mono);
+
+  /* 🎨 Primary brand palette (emerald in this case) */
+  --color-primary-50:  theme(colors.purple.50);
+  --color-primary-100: theme(colors.purple.100);
+  --color-primary-200: theme(colors.purple.200);
+  --color-primary-300: theme(colors.purple.300);
+  --color-primary-400: theme(colors.purple.400);
+  --color-primary-500: theme(colors.purple.500);
+  --color-primary-600: theme(colors.purple.600);
+  --color-primary-700: theme(colors.purple.700);
+  --color-primary-800: theme(colors.purple.800);
+  --color-primary-900: theme(colors.purple.900);
 }
 
 @media (prefers-color-scheme: dark) {
