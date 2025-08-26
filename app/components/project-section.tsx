@@ -2,6 +2,7 @@
 import React from "react";
 import ProjectModal from "./project-modal";
 import {useState} from "react";
+import Image from "next/image";
 
 interface Project {
   id: number;
@@ -117,7 +118,21 @@ const ProjectSection = () => {
             className=" backdrop-blur-sm rounded-lg p-6 border border-primary-800/50 hover:border-primary-500/50 transition-colors hover:shadow-sm text-left"
             onClick={() => handleProjectClick(project)}
           >
-            <div className="flex flex-col h-full">
+
+            {/* Image block */}
+            <div className="relative w-full overflow-hidden rounded-lg ">
+              <Image
+                src={project.image || "/project-images/placeholder.png"}
+                alt={project.title}
+                width={800}   // pick a safe width (Next.js will auto-optimize)
+                height={0}    // let it scale height
+                className="w-full h-auto object-contain object-center transition-transform duration-300 ease-out group-hover:scale-105"
+                priority={false}
+              />
+            </div>
+
+
+            <div className="flex flex-col">
               <h3 className=" text-foreground  text-lg font-semibold mb-2">
                 {project.title}
               </h3>
