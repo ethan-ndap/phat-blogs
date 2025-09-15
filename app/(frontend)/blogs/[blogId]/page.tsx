@@ -1,10 +1,20 @@
+"use client";
+import { useEffect, useState } from "react";
 import { RichText as SerializedRichText } from "@payloadcms/richtext-lexical/react";
+import { useParams } from 'next/navigation'
 
-const Page = async ({ params }: { params: { blogId: string } }) => {
+const Page = () => {
+  const params = useParams<{ blogId: string}>();
+  const [blog, setBlog] = useState<any>(null);
 
-  const { blogId } = await params;
-  const req = await fetch(`http://localhost:3000/api/blog/${blogId}`);
-  const blog = await req.json()
+  useEffect(() => {
+    const fetchBlog = async () => {
+      const req = await fetch(`http://localhost:3000/api/blog/${params.blogId}`);
+      const data = await req.json();
+      setBlog(data);
+    };
+    fetchBlog();
+  }, [params.blogId]);
 
   if (!blog) {
     return <div>Post not found</div>;
