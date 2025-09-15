@@ -143,6 +143,7 @@ export interface User {
  */
 export interface Blog {
   id: number;
+  title?: string | null;
   content?: {
     root: {
       type: string;
@@ -245,6 +246,7 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "blog_select".
  */
 export interface BlogSelect<T extends boolean = true> {
+  title?: T;
   content?: T;
   updatedAt?: T;
   createdAt?: T;
