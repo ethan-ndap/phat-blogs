@@ -2,10 +2,12 @@
 import { useEffect, useState } from "react";
 import { RichText as SerializedRichText } from "@payloadcms/richtext-lexical/react";
 import { useParams } from 'next/navigation'
+import type { Blog } from "@/app/payload-types";
+import { toLexicalState } from "@/app/utils/assert-Lexical-Type";
 
 const Page = () => {
   const params = useParams<{ blogId: string}>();
-  const [blog, setBlog] = useState<any>(null);
+  const [blog, setBlog] = useState<Blog | null>(null);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -25,7 +27,7 @@ const Page = () => {
       <h1 className="text-5xl font-bold mb-5 leading-normal text-center">{blog.title}</h1>
       <SerializedRichText
         className="payload-richtext"
-        data={blog.content}
+        data={toLexicalState(blog.content)}
       />
     </div>
   );
