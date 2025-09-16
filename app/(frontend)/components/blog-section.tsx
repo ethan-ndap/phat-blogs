@@ -3,11 +3,18 @@ import React from 'react'
 import type { Blog } from '@/app/payload-types'
 import { formatDateString } from '@/app/utils/formatDate'
 
+import configPromise from "@/app/payload.config";
+import { getPayload } from 'payload';
 
 const BlogSection = async () => {
-  const req = await fetch('http://localhost:3000/api/blog')
-  const blogs = await req.json()
+  const payload = await getPayload({ config: configPromise });
 
+  const { docs } = await payload.find({
+    collection: "blog",
+    sort: "-updatedAt",
+    limit: 10,
+  });
+  
   return (
     <div className="max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8"
       id="blog">
@@ -21,7 +28,7 @@ const BlogSection = async () => {
         </div>
 
         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-12">
-          {blogs.docs.map((blog: Blog) => (
+          {docs.map((blog: Blog) => (
             <Link
               href={`/blogs/${blog.id}`}
               key={blog.id}

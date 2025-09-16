@@ -1,22 +1,28 @@
-"use client";
 import { useEffect, useState } from "react";
 import { RichText as SerializedRichText } from "@payloadcms/richtext-lexical/react";
 import { useParams } from 'next/navigation'
 import type { Blog } from "@/app/payload-types";
 import { toLexicalState } from "@/app/utils/assert-Lexical-Type";
 
-const Page = () => {
-  const params = useParams<{ blogId: string}>();
-  const [blog, setBlog] = useState<Blog | null>(null);
+import configPromise from "@/app/payload.config";
+import { getPayload } from 'payload';
 
-  useEffect(() => {
-    const fetchBlog = async () => {
-      const req = await fetch(`http://localhost:3000/api/blog/${params.blogId}`);
-      const data = await req.json();
-      setBlog(data);
-    };
-    fetchBlog();
-  }, [params.blogId]);
+const Page = async (props: {
+  params: Promise<{ blogId: string }>;
+  }) => {
+  const { blogId } = await props.params;
+  const payload = await getPayload({ config: configPromise });
+
+  let blog: Blog | null = null;
+  try {
+    blog = await payload.findByID({
+      collection: "blog",
+      id: Number(blogId),
+    });
+  } catch (e) {
+    // not found or access denied
+    blog = null;
+  }
 
   if (!blog) {
     return <div>Post not found</div>;
