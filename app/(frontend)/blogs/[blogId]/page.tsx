@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { RichText as SerializedRichText } from "@payloadcms/richtext-lexical/react";
-import { useParams } from 'next/navigation'
 import type { Blog } from "@/app/payload-types";
 import { toLexicalState } from "@/app/utils/assert-Lexical-Type";
 

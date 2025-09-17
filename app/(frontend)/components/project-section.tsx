@@ -14,12 +14,14 @@ const ProjectSection = () => {
   const projects = [
     {
       id: 1,
-      title: "WILDFIRE - Management Platform",
+      title: "WILDFIRE - Internship Management Platform",
       tags: [
-        "Project Management",
-        "UI/UX",
+        "React",
         "Figma",
-        "Fullstack"
+        "Express",
+        "Typescript",
+        "Postgresql",
+        "Project Management",
       ],
       description: "Led the capstone project WILDFIRE, a Work Integrated Learning (WIL) platform developed in collaboration with Sample Assist, a medical technology company. The platform was designed to streamline and efficiently manage internship programs for universities and partner organizations.",
       techStack: ["RESTful", "Node.js", "Express", "Ant Design", "TypeScript"],
@@ -27,7 +29,7 @@ const ProjectSection = () => {
     },
     {
       id: 2,
-      title: "Elderly AI Monitoring System  ",
+      title: "Health-Care AI Monitoring System  ",
       tags: ['Acadamic Research', 'Python', 'LSTM', 'Flask'],
             description: " Throughout the 10-week research period, I implemented real-time object detection using the YOLO model to monitor human activity and convert video streams into timestamped data, ensuring both privacy protection and system efficiency. This data was then processed by a Long Short-Term Memory (LSTM) neural network trained to detect anomalies in behavioral patterns over time. In addition, I designed and developed an escalating alert system using Flask to manage notifications and integrated the Twilio API to send automated SMS alerts and initiate emergency calls when unusual behavior was detected.",
       techStack: ['Acadamic Research', 'Python', 'LSTM', 'Flask'],
@@ -35,36 +37,36 @@ const ProjectSection = () => {
     },
     {
       id: 3,
-      title: "Project 3",
-      tags: ["tags 3"],
-      description:"",
-      techStack: ['React', 'TypeScript', 'Figma'],
-      image: "/project-images/p-3.jpg"
+      title: "UOW Hackathon ",
+      tags: ["Full-stack", "React", "Supabase", "Javascript"],
+      description:"Participating the Hackathon at University of Wollongong. Our team - \"SignifAI\" developed an Computer Vision model to recognize sign language from webcame, for the purpose of assisting disability people. I am responsible on develop an interface to connect the backend model to the user interface.",
+      techStack: ["Full-stack", "React", "Supabase", "Javascript"],
+      image: "/project-images/AI-HACKATHON.jpg"
     },
-    {
-      id: 4,  
-      title: "Project 4",
-      tags: ["tags 4", "tag 2"],
-      description:"",
-      techStack: ['React', 'TypeScript', 'Figma'],
-      image: "/project-images/p-1.jpg"
-    },
-    {
-      id: 5,
-      title: "Project 5",
-      tags: ["tags 5"],
-      description:"",
-      techStack: ['React', 'TypeScript', 'Figma'],
-      image: "/project-images/AI-detection.png"
-    },
-    {
-      id: 6,  
-      title: "Project 6",
-      tags: ["tags 6"],
-      description:"",
-      techStack: ['React', 'TypeScript', 'Figma'],
-      image: "/project-images/p-2.jpg"
-    },
+    // {
+    //   id: 4,  
+    //   title: "Project 4",
+    //   tags: ["tags 4", "tag 2"],
+    //   description:"",
+    //   techStack: ['React', 'TypeScript', 'Figma'],
+    //   image: "/project-images/p-1.jpg"
+    // },
+    // {
+    //   id: 5,
+    //   title: "Project 5",
+    //   tags: ["tags 5"],
+    //   description:"",
+    //   techStack: ['React', 'TypeScript', 'Figma'],
+    //   image: "/project-images/AI-detection.png"
+    // },
+    // {
+    //   id: 6,  
+    //   title: "Project 6",
+    //   tags: ["tags 6"],
+    //   description:"",
+    //   techStack: ['React', 'TypeScript', 'Figma'],
+    //   image: "/project-images/p-2.jpg"
+    // },
   ];
 
   const [selectedProjectID, setSelectedProjectID] = useState<Project["id"] | null>(null);
@@ -110,12 +112,12 @@ const ProjectSection = () => {
 
   return (
     <section id="projects" className="px-4 py-32 sm:px-6 lg:px-8">
-      <h2 className="text-3xl font-bold mb-12 text-center">Feature Projects</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <h2 className="text-3xl font-bold mb-12 text-center">Projects</h2>
+       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {projects.map((project, index) => (
           <button
             key={index}
-            className=" backdrop-blur-sm rounded-lg p-6 border border-primary-800/50 hover:border-primary-500/50 transition-colors hover:shadow-sm text-left"
+            className="flex flex-col backdrop-blur-sm rounded-lg p-6 border border-primary-800/50 hover:border-primary-500/50 transition-colors hover:shadow-sm text-left"
             onClick={() => handleProjectClick(project)}
           >
 
@@ -132,7 +134,7 @@ const ProjectSection = () => {
             </div>
 
 
-            <div className="flex flex-col">
+            <div className="flex flex-col mt-auto ">
               <h3 className=" text-foreground  text-lg font-semibold mb-2">
                 {project.title}
               </h3>
